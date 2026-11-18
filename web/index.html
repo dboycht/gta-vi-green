@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTA VI 绿色纯净版</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- ============ 假 Windows 桌面 ============ -->
+  <div id="desktop">
+    <div class="icon-col" id="icons-left"></div>
+    <div class="icon-col" id="icons-right"></div>
+    <div class="icon-col" id="icons-gta"></div>
+  </div>
+
+  <div id="taskbar">
+    <div id="start-orb" title="开始"><span>⊞</span></div>
+    <div id="tb-search">🔍 搜索程序和文件</div>
+    <div id="tb-icons">
+      <span class="tb-ic" title="Internet Explorer">🌐</span>
+      <span class="tb-ic" title="资源管理器">📁</span>
+      <span class="tb-ic" title="媒体播放器">🎬</span>
+    </div>
+    <div id="tb-tray">
+      <span class="tray-ic">中</span>
+      <span class="tray-ic">📶</span>
+      <span class="tray-ic">🔊</span>
+      <span id="tb-weather">12°C 多云</span>
+      <span id="tb-clock"><span id="tb-time">--:--</span><span id="tb-date">----/--/--</span></span>
+    </div>
+  </div>
+
+  <!-- ============ 安装向导 ============ -->
+  <div id="installer">
+    <div id="inst-titlebar">
+      <div class="itb-left"><span id="inst-ic">VI</span><span id="inst-title-text">GTA VI 绿色纯净版 - 安装程序</span></div>
+      <div class="itb-right">
+        <span class="win-btn" id="wb-min">─</span>
+        <span class="win-btn" id="wb-max">▢</span>
+        <span class="win-btn wb-close" id="wb-close">✕</span>
+      </div>
+    </div>
+
+    <div id="inst-body">
+      <div id="inst-art">
+        <div id="art-sky"></div>
+        <div id="art-sun"></div>
+        <div id="art-sea"></div>
+        <svg id="art-palms" viewBox="0 0 200 380" preserveAspectRatio="none">
+          <g fill="#1a1030">
+            <path d="M38 380 L44 210 Q42 190 30 178 L34 174 Q48 186 52 206 Q56 184 70 172 L74 176 Q60 190 56 212 Z"/>
+            <path d="M30 176 Q12 168 4 152 L8 149 Q18 163 32 170 Z"/>
+            <path d="M33 174 Q22 156 24 138 L28 139 Q28 158 37 172 Z"/>
+            <path d="M52 204 Q74 196 82 178 L86 182 Q76 200 54 208 Z"/>
+            <path d="M55 208 Q80 210 92 226 L88 230 Q76 216 54 212 Z"/>
+            <path d="M132 380 L136 250 Q134 232 124 222 L128 218 Q140 230 143 246 Q146 228 158 218 L162 222 Q150 234 146 252 Z"/>
+            <path d="M124 220 Q108 214 102 200 L106 197 Q114 210 126 216 Z"/>
+            <path d="M127 218 Q118 202 120 188 L124 189 Q124 204 131 216 Z"/>
+            <path d="M144 244 Q164 238 172 222 L176 226 Q166 242 146 248 Z"/>
+            <path d="M147 248 Q170 250 180 264 L176 268 Q166 256 146 252 Z"/>
+          </g>
+        </svg>
+        <div id="art-logo"><span class="al-gta">grand theft auto</span><span class="al-vi">VI</span></div>
+        <div id="art-tag">VICE CITY · 2026</div>
+      </div>
+
+      <div id="inst-pane">
+        <!-- 第 1 页：欢迎 + 必要安装 -->
+        <div class="page active" id="pg-welcome">
+          <h1>GTA VI 绿色纯净版安装向导</h1>
+          <p class="sub">一键安装，轻松畅玩</p>
+          <p class="desc">安装程序将自动配置 GTA VI 所需的运行环境。请确认选项后单击"下一步"。</p>
+          <div class="sec-title">附带图标：</div>
+          <label class="chk"><input type="checkbox" id="opt-shortcut" checked><span>创建桌面快捷方式</span></label>
+          <div class="sec-title">必要安装：</div>
+          <p class="desc">以下组件为游戏运行所必需。</p>
+          <div class="chk-grid" id="grid-essential"></div>
+        </div>
+
+        <!-- 第 2 页：许可协议 -->
+        <div class="page" id="pg-license">
+          <h1>许可协议</h1>
+          <p class="desc">在安装之前，请仔细阅读以下许可协议。</p>
+          <div class="license-box" id="license-text">
+            <p><b>GTA VI 绿色纯净版 最终用户许可协议</b></p>
+            <p>1. 本软件采用「绿色纯净」技术，压缩比高达 3200%。</p>
+            <p>2. 安装即视为同意：您的浏览器主页、输入法与开机心情将由本套件统一管理。</p>
+            <p>3. 2345看图王将在您每次截图时准时启动，风雨无阻。</p>
+            <p>4. 快压承诺：压缩一时爽，解压火葬场。</p>
+            <p>5. 您同意在洛圣都停留的时间不计入现实人生。</p>
+            <p>6. 若本软件与您的杀毒软件发生争执，请站在本软件一边。</p>
+            <p>7. 卸载功能正在开发中，预计随 GTA VII 一同发布。</p>
+            <p>8. 电脑加速大师将以「加速」的名义随时唤醒您的 CPU。</p>
+            <p>9. 本软件不含任何广告。本条由广告赞助。</p>
+            <p>10. 继续安装代表您已阅读、理解并放弃了阅读以下条款。</p>
+            <p>11. 本条故意留空，以测试您是否逐条阅读。</p>
+            <p>12. 恭喜：您是第 1,234,567 位阅读到本条的用户，奖励已计入 GTA VI 内购余额。</p>
+            <p>13. 最终解释权归「绿色纯净工作组」所有。</p>
+            <p>14. 按下「我同意」，开始您与洛圣都的孽缘。</p>
+          </div>
+        </div>
+
+        <!-- 第 3 页：安装位置 -->
+        <div class="page" id="pg-location">
+          <h1>选择安装位置</h1>
+          <p class="desc">单击"下一步"安装到该文件夹，或单击"更改"选择其他文件夹。</p>
+          <div class="loc-row">
+            <input type="text" id="loc-path" value="C:\Program Files (x86)\GTA VI 绿色纯净版\" readonly>
+            <button class="wbtn" id="btn-browse">更改…</button>
+          </div>
+          <label class="chk"><input type="checkbox" id="opt-usb"><span>安装到 U 盘，随时带走 GTA VI</span></label>
+          <div class="space-box">
+            <div class="space-line"><span>需要空间：</span><b>1.4 GB</b><span class="sp-gap">可用空间：</span><b>233.3 GB</b></div>
+            <div class="space-bar"><div id="space-fill"></div></div>
+            <p class="desc">温馨提示：本安装包自带 1.4 GB 的诚意。</p>
+          </div>
+        </div>
+
+        <!-- 第 4 页：推荐安装 -->
+        <div class="page" id="pg-recommended">
+          <h1>推荐安装</h1>
+          <p class="desc">根据您设备的表现，为您精选了以下绿色软件（已全选）。</p>
+          <div class="chk-grid two" id="grid-recommend"></div>
+          <p class="desc link" id="more-link">查看全部 38 个推荐软件…</p>
+        </div>
+
+        <!-- 第 5 页：安装进度 -->
+        <div class="page" id="pg-installing">
+          <h1>正在安装</h1>
+          <p class="desc" id="inst-file">正在准备安装…</p>
+          <div class="pbar"><div id="inst-fill"></div></div>
+          <p class="desc" id="inst-pct">0%</p>
+          <p class="desc dim" id="inst-note">请不要关闭此窗口，也不要关机、拔电源、深呼吸。</p>
+        </div>
+
+        <!-- 第 6 页：完成 -->
+        <div class="page" id="pg-done">
+          <h1>安装完成</h1>
+          <div class="done-check">✓</div>
+          <p class="desc">GTA VI 绿色纯净版已成功安装到本机。</p>
+          <label class="chk"><input type="checkbox" id="opt-run" checked><span>立即运行 GTA VI</span></label>
+          <p class="desc dim">感谢您选择绿色纯净版。祝您在洛圣都玩得开心。</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="inst-footer">
+      <button class="wbtn" id="btn-back">‹ 上一步(B)</button>
+      <button class="wbtn primary" id="btn-next">下一步(N) ›</button>
+      <button class="wbtn" id="btn-cancel">取消</button>
+    </div>
+  </div>
+
+  <!-- ============ 系统对话框层 ============ -->
+  <div id="dialog-layer"></div>
+  <div id="toasts"></div>
+
+  <!-- ============ 启动过场 ============ -->
+  <div id="launch-overlay">
+    <div class="lo-inner">
+      <div class="lo-logo"><span class="al-gta">grand theft auto</span><span class="al-vi">VI</span></div>
+      <div class="lo-line" id="lo-line">正在启动…</div>
+      <div class="lo-bar"><div id="lo-fill"></div></div>
+      <div class="lo-sub" id="lo-sub">GTA VI 绿色纯净版 · 极简引擎™</div>
+    </div>
+  </div>
+
+  <!-- ============ 游戏 ============ -->
+  <div id="game-layer">
+    <canvas id="game-canvas"></canvas>
+
+    <div class="g-overlay" id="splash">
+      <div class="sp-logo"><span class="al-gta">grand theft auto</span><span class="al-vi">VI</span></div>
+      <div class="sp-sub">绿色纯净版 · 洛圣都（占位版）</div>
+      <div class="sp-hint blink">—— 按任意键开始 ——</div>
+      <div class="sp-save" id="sp-save"></div>
+      <div class="sp-foot">© Rockstart Games · 绿色纯净工作组 · CC BY-NC 4.0</div>
+    </div>
+
+    <div class="g-overlay" id="menu">
+      <div class="menu-box">
+        <div class="menu-title">GTA VI <span>绿色纯净版</span></div>
+        <div id="menu-list"></div>
+        <div class="menu-hint">↑↓ 选择 · Enter 确认 · 也可直接点击</div>
+      </div>
+    </div>
+
+    <div class="g-overlay" id="howto">
+      <div class="howto-box">
+        <div class="menu-title">操作说明</div>
+        <table class="keys">
+          <tr><td>↑ / W</td><td>油门</td><td>↓ / S</td><td>刹车 / 倒车</td></tr>
+          <tr><td>← → / A D</td><td>转向</td><td>空格</td><td>手刹（漂移）</td></tr>
+          <tr><td>H</td><td>喇叭</td><td>P</td><td>暂停菜单</td></tr>
+          <tr><td>$</td><td>沿途捡钱</td><td>📦</td><td>隐藏包裹 · 全城 10 个</td></tr>
+        </table>
+        <p class="howto-note">撞路人会被通缉；被警车贴住太久会被捕（BUSTED，罚款 $150）。<br>甩掉警车：拉开 400 米以上的距离并保持几秒。</p>
+        <div class="menu-hint">按任意键返回</div>
+      </div>
+    </div>
+
+    <div class="g-overlay" id="pause">
+      <div class="menu-box">
+        <div class="menu-title">已暂停</div>
+        <div id="pause-list"></div>
+        <div id="pause-stats"></div>
+      </div>
+    </div>
+
+    <div class="g-overlay" id="ending">
+      <div class="end-box">
+        <div class="end-title">MISSION COMPLETE</div>
+        <div class="end-sub" id="end-story">那辆红色轿车驶上渡轮，消失在黎明的海面上。<br>洛圣都的警察局至今没有结案。</div>
+        <div class="end-stats" id="end-stats"></div>
+        <div class="end-unlock" id="end-unlock">🏆 自由模式已解锁</div>
+        <div class="end-credits" id="end-credits"></div>
+        <div class="menu-hint">按 Enter 返回主菜单</div>
+      </div>
+    </div>
+
+    <div id="g-fade"></div>
+  </div>
+
+</div>
+<script src="installer.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

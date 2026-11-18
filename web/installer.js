@@ -49,26 +49,20 @@ const DESKTOP_ICONS_RIGHT = [
   ["电脑诊所", "🏥", "#e84393"], ["驱动精灵", "⚙", "#636e72"],
 ];
 
-function buildDesktop() {
-  const left = $("#icons-left"), right = $("#icons-right");
-  const mk = (name, emoji, color, col) => {
-    const d = el("div", "dicon");
-    d.appendChild(el("div", "di-img", emoji)).style.background =
-      `linear-gradient(160deg, ${color}, ${color}cc)`;
-    d.appendChild(el("div", "di-name", name));
-    d.addEventListener("click", () => {
-      col.querySelectorAll(".dicon.sel").forEach((x) => x.classList.remove("sel"));
-      d.classList.add("sel");
-    });
-    return d;
-  };
-  DESKTOP_ICONS_LEFT.forEach(([n, e, c]) => left.appendChild(mk(n, e, c, left)));
-  DESKTOP_ICONS_RIGHT.forEach(([n, e, c]) => right.appendChild(mk(n, e, c, right)));
-  const bin = left.firstChild;
-  bin.addEventListener("dblclick", () =>
+/* 桌面初始为空：图标随安装进度逐个「装」出来（见 Installer.startIconDrip） */
+function spawnDesktopIcon([name, emoji, color], col, isBin) {
+  const d = el("div", "dicon pop");
+  d.appendChild(el("div", "di-img", emoji)).style.background =
+    `linear-gradient(160deg, ${color}, ${color}cc)`;
+  d.appendChild(el("div", "di-name", name));
+  d.addEventListener("click", () => {
+    col.querySelectorAll(".dicon.sel").forEach((x) => x.classList.remove("sel"));
+    d.classList.add("sel");
+  });
+  if (isBin) d.addEventListener("dblclick", () =>
     toast("回收站是空的，干净得像 GTA VI 的安装包。"));
+  col.appendChild(d);
 }
-buildDesktop();
 
 /* 安装成功后往桌面加 GTA VI 快捷方式 */
 function addGtaShortcut() {
@@ -159,6 +153,8 @@ const Installer = {
   refuseDodges: 0,
   installing: false,
   shortcutChecked: true,
+  desktopQueue: [],
+  dripTimer: null,
 
   init() {
     this.buildCheckboxGrid($("#grid-essential"), BUNDLEWARE, true);
@@ -168,6 +164,32 @@ const Installer = {
     this.bindLicense();
     this.bindLocation();
     this.showPage(0);
+  },
+
+  /* 图标随安装滴灌上桌 */
+  startIconDrip() {
+    this.desktopQueue = [
+      ...DESKTOP_ICONS_LEFT.map((it) => [it, $("#icons-left")]),
+      ...DESKTOP_ICONS_RIGHT.map((it) => [it, $("#icons-right")]),
+    ];
+    this.dripTimer = setInterval(() => {
+      for (let k = 0; k < 3 && this.desktopQueue.length; k++) {
+        const [it, col] = this.desktopQueue.shift();
+        spawnDesktopIcon(it, col, it[0] === "回收站");
+      }
+      if (!this.desktopQueue.length) {
+        clearInterval(this.dripTimer);
+        this.dripTimer = null;
+      }
+    }, 1000);
+  },
+
+  flushDesktopIcons() {
+    if (this.dripTimer) { clearInterval(this.dripTimer); this.dripTimer = null; }
+    while (this.desktopQueue.length) {
+      const [it, col] = this.desktopQueue.shift();
+      spawnDesktopIcon(it, col, it[0] === "回收站");
+    }
   },
 
   buildCheckboxGrid(grid, names, locked) {
@@ -312,6 +334,7 @@ const Installer = {
   startInstall() {
     this.installing = true;
     this.showPage(4);
+    this.startIconDrip();
     let idx = 0, pct = 0;
     const fileEl = $("#inst-file"), fill = $("#inst-fill"), pctEl = $("#inst-pct");
     const setPct = (v) => {
@@ -359,6 +382,7 @@ const Installer = {
     this.shortcutChecked = $("#opt-shortcut").checked;
     const run = $("#opt-run").checked;
     $("#installer").classList.add("hidden");
+    this.flushDesktopIcons();
     if (this.shortcutChecked) addGtaShortcut();
     if (run) {
       this.launch();

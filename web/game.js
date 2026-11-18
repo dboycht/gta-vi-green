@@ -49,7 +49,7 @@ const WORLD_W = COLS * BW + (COLS + 1) * ROAD;   /* 2430 */
 const WORLD_H = ROWS * BH + (ROWS + 1) * ROAD;   /* 1740 */
 const VX = Array.from({ length: COLS + 1 }, (_, i) => ROAD / 2 + i * (BW + ROAD));
 const HY = Array.from({ length: ROWS + 1 }, (_, j) => ROAD / 2 + j * (BH + ROAD));
-const SPAWN = { x: VX[3], y: HY[3], a: 0 };
+const SPAWN = { x: VX[3], y: HY[3], a: -Math.PI / 2 };  /* 车头朝上：↑ 就是往屏幕上方开 */
 
 const PARKS = [[1, 1], [4, 2]];
 const PARKING = [2, 3];
@@ -453,7 +453,8 @@ function doBusted() {
   G.money = Math.max(0, G.money - 150);
   Save.data.stats.busted++;
   setTimeout(() => {
-    player.x = SPAWN.x; player.y = SPAWN.y; player.vx = player.vy = 0; player.angle = 0;
+    player.x = SPAWN.x; player.y = SPAWN.y; player.vx = player.vy = 0;
+    player.angle = SPAWN.a;
     cam.x = player.x; cam.y = player.y;
     setWanted(0);
     G.frozen = false;
@@ -488,7 +489,7 @@ function resetRun() {
   World.spawnMoney();
   traffic = spawnTraffic();
   peds = spawnPeds();
-  player.x = SPAWN.x; player.y = SPAWN.y; player.angle = 0;
+  player.x = SPAWN.x; player.y = SPAWN.y; player.angle = SPAWN.a;
   player.vx = player.vy = 0;
   cam.x = player.x; cam.y = player.y;
 }
@@ -624,10 +625,10 @@ function updatePlayer(dt) {
   const sp = Math.hypot(player.vx, player.vy);
   if (sp > 250) { player.vx *= 250 / sp; player.vy *= 250 / sp; }
 
-  /* 转向 */
+  /* 转向（原地也有基础转向力，GTA1 式坦克调头） */
   const steer = (right ? 1 : 0) - (left ? 1 : 0);
   const dirSign = f >= 0 ? 1 : -1;
-  const authority = clamp(Math.abs(f) / 130, 0, 1);
+  const authority = clamp(Math.abs(f) / 130, 0.35, 1);
   player.angle += steer * 2.5 * authority * dirSign * dt;
 
   player.x += player.vx * dt;

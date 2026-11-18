@@ -1,0 +1,12 @@
+node_modules/
+dist/
+out/
+_scratch/
+.tmp/
+logs/
+DEVELOPMENT.md
+ERROR.md
+HANDOVER.md
+ACCEPTANCE.md
+PENDING_DELETE.md
+.DS_Store

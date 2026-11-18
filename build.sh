@@ -16,8 +16,9 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/web" .tmp
 swiftc -O app/App.swift -o "$APP/Contents/MacOS/$EXEC" 2> .tmp/build.log \
   || { cat .tmp/build.log; exit 1; }
 
-# 2) web 资源
+# 2) web 资源（assets/ 为用户自备封面，不入库，仅本地嵌入）
 cp -R web/. "$APP/Contents/Resources/web/"
+[ -d assets ] && cp -R assets "$APP/Contents/Resources/web/"
 
 # 3) Info.plist（版本注入）
 sed "s/__VERSION__/$VERSION/g" app/Info.plist > "$APP/Contents/Info.plist"

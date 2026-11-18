@@ -14,6 +14,25 @@ const el = (tag, cls, html) => {
 };
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 
+/* 自备封面：把图存为 web/assets/cover.{jpg,png,jpeg,webp} 即可替换
+ * 安装器左侧程序化画面（assets/ 不入库，仓库不携带任何版权素材） */
+function tryLoadCover() {
+  const candidates =
+    ["assets/cover.jpg", "assets/cover.png", "assets/cover.jpeg", "assets/cover.webp"];
+  const art = $("#inst-art");
+  const next = (i) => {
+    if (i >= candidates.length) return;
+    const img = new Image();
+    img.onload = () => {
+      art.classList.add("custom");
+      art.style.backgroundImage = `url("${candidates[i]}")`;
+    };
+    img.onerror = () => next(i + 1);
+    img.src = candidates[i];
+  };
+  next(0);
+}
+
 /* ---------- 舞台缩放（1280×720 设计稿适配任意窗口） ---------- */
 function fitStage() {
   const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
@@ -461,6 +480,7 @@ const Audio = {
 };
 
 Installer.init();
+tryLoadCover();
 
 /* ---------- 调试钩子（?debug=1 才暴露） ---------- */
 if (/\bdebug\b/.test(location.search)) {

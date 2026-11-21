@@ -59,8 +59,8 @@ VERSION         版本号单一来源
 
 安装器左侧画面默认为程序化绘制 —— 仓库**不携带任何 Rockstar 版权素材**。
 想换成真实键艺图：把图片存为 `web/assets/cover.jpg`（支持 jpg/png/jpeg/webp），
-网页版刷新即生效；macOS 版在项目根放 `assets/cover.jpg` 后跑 `bash build.sh`
-即嵌入 .app。`assets/` 已被 `.gitignore` 排除，不会被提交或发布。
+网页版刷新即生效；跑 `bash build.sh` 也会把 `web/assets/` 嵌入 .app
+（本地自用）。该目录已被 `.gitignore` 排除，不会被提交或发布。
 
 ## 机械检查
 

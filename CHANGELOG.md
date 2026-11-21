@@ -3,7 +3,7 @@
 ## 新增
 
 - **自备封面**：把图片存为 `web/assets/cover.{jpg,png,jpeg,webp}` 即可替换
-  安装器左侧的程序化画面；macOS 构建时自动嵌入 `assets/`。
+  安装器左侧的程序化画面；macOS 构建时自动嵌入 `web/assets/`。
   该目录不入库 —— 仓库仍不携带任何 Rockstar 版权素材。
 
 # 1.0.2
